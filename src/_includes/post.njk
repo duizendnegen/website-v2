@@ -1,0 +1,16 @@
+---
+layout: base.njk
+---
+<div class="article-page">
+  <article class="h-entry">
+    <h1 class="p-name">{{ title }}</h1>
+    <div class="post-meta" hidden>
+      <time class="dt-published" datetime="{{ date | isoDate }}">{{ date | readableDate }}</time>
+      <a class="u-url" href="{{ site.url }}{{ page.url }}">Permalink</a>
+      <a class="p-author" href="{{ site.url }}">{{ site.author }}</a>
+    </div>
+    <div class="e-content">
+      {{ content | safe }}
+    </div>
+  </article>
+</div>
