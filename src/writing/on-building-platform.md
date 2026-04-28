@@ -1,5 +1,5 @@
 ---
-title: On Platform
+title: On Building Platform
 date: 2026-04-28
 excerpt: Platform exists to solve the foundational problems specific to your organization. It can't be borrowed from someone else's context. Observe what's already working, then replicate it.
 ---
