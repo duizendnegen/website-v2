@@ -86,6 +86,11 @@
   --color-bg-alt: #ffffff;
   --color-border: #d5dce3;
 
+  /* Navy at four opacity tiers: 100 → body → secondary → faint */
+  --color-navy-80: rgba(17, 14, 56, 0.8);
+  --color-navy-60: rgba(17, 14, 56, 0.6);
+  --color-navy-40: rgba(17, 14, 56, 0.4);
+
   --font-headline: 'Playfair Display', Georgia, serif;
   --font-body:     'Merriweather', Georgia, serif;
 
@@ -119,6 +124,41 @@ body {
 a {
   color: var(--color-navy);
   text-decoration: none;
+}
+
+/* ============================================================
+   Shared Primitives
+   ============================================================ */
+
+/* Editorial display headline — all page-level h1s and section titles.
+   Page-specific classes override only font-size and margin. */
+.headline-display {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+  margin: 0 0 2rem;
+}
+
+/* Lead / intro paragraph — the first body paragraph on any page. */
+.text-lead {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--color-navy-80);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Small-caps metadata label — dates, locations, tech stacks, footer copy. */
+.text-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-navy-40);
 }
 
 /* ============================================================
@@ -167,7 +207,7 @@ a {
   font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: -0.01em;
-  color: rgba(17, 14, 56, 0.6);
+  color: var(--color-navy-60);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -217,14 +257,9 @@ main {
   grid-column: 10 / 13;
 }
 
+/* Extends .headline-display — overrides only font-size */
 .hero-headline {
-  font-family: var(--font-headline);
   font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--color-navy);
-  margin: 0 0 2rem;
 }
 
 .hero-accent {
@@ -234,14 +269,9 @@ main {
   margin-bottom: 2rem;
 }
 
+/* Extends .text-lead — overrides only max-width */
 .hero-description {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  font-weight: 300;
-  color: rgba(17, 14, 56, 0.8);
-  line-height: 1.8;
   max-width: 36rem;
-  margin: 0;
 }
 
 .portrait-frame {
@@ -313,7 +343,7 @@ main {
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 300;
-  color: rgba(17, 14, 56, 0.7);
+  color: var(--color-navy-80);
   line-height: 1.8;
   margin: 0;
 }
@@ -328,13 +358,6 @@ main {
   padding: 4rem 2rem 6rem;
 }
 
-.writing-index h1 {
-  font-family: var(--font-headline);
-  font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin: 0 0 3rem;
-}
 
 .writing-list {
   list-style: none;
@@ -393,6 +416,158 @@ main {
 
 
 /* ============================================================
+   Resume page
+   ============================================================ */
+
+.resume-page {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 6rem 2rem 8rem;
+}
+
+.resume-header {
+  max-width: 56rem;
+  margin-bottom: 7rem;
+}
+
+/* Extends .headline-display — overrides only font-size */
+.resume-headline {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* .resume-intro uses .text-lead with no override — full width of container */
+
+/* Timeline */
+
+.resume-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-role {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 0 4rem;
+  padding-bottom: 5.5rem;
+}
+
+.resume-role-side {
+  padding-top: 0.3rem;
+}
+
+/* Extends .text-label — overrides only margin */
+.resume-period {
+  margin-bottom: 0.4rem;
+}
+
+.resume-company {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-navy);
+  margin-bottom: 0.15rem;
+}
+
+.resume-location {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-navy-60);
+  margin-bottom: 0.75rem;
+}
+
+/* Extends .text-label — overrides font-size, letter-spacing, line-height */
+.resume-stack {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+}
+
+.resume-role-main h2.resume-role-title {
+  font-family: var(--font-headline);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-navy);
+  margin: 0 0 0.6rem;
+}
+
+.resume-role-progression {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-navy-60);
+  margin: 0 0 1.25rem;
+}
+
+.resume-role-main p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-navy-80);
+  margin: 0 0 1rem;
+  max-width: 38rem;
+}
+
+.resume-bullets {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  max-width: 38rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resume-bullets li {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-navy-80);
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.resume-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-sage);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .resume-role {
+    grid-template-columns: 1fr;
+    gap: 1.25rem 0;
+    padding-bottom: 4rem;
+  }
+
+  .resume-role-side {
+    padding-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+  }
+
+  .resume-period,
+  .resume-company,
+  .resume-location {
+    margin-bottom: 0;
+  }
+
+  .resume-stack {
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+}
+
+/* ============================================================
    Footer
    ============================================================ */
 
@@ -410,12 +585,10 @@ main {
   justify-content: space-between;
 }
 
+/* Extends .text-label — overrides font-size and letter-spacing */
 .footer-copy {
-  font-family: var(--font-body);
   font-size: 0.65rem;
-  text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(17, 14, 56, 0.5);
 }
 
 .footer-profiles {
@@ -425,7 +598,7 @@ main {
 }
 
 .footer-profile-link {
-  color: rgba(17, 14, 56, 0.4);
+  color: var(--color-navy-40);
   display: flex;
   transition: color 0.2s;
 }
