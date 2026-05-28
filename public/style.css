@@ -223,6 +223,12 @@ a {
   padding-bottom: 0.15rem;
 }
 
+@media (max-width: 768px) {
+  .nav-links a:first-child {
+    display: none;
+  }
+}
+
 
 /* ============================================================
    Main content — offset for fixed nav
@@ -447,12 +453,25 @@ main {
 .resume-role {
   display: grid;
   grid-template-columns: 14rem 1fr;
-  gap: 0 4rem;
+  grid-template-areas:
+    "side header"
+    "side body";
+  column-gap: 4rem;
+  row-gap: 0;
   padding-bottom: 5.5rem;
 }
 
 .resume-role-side {
+  grid-area: side;
   padding-top: 0.3rem;
+}
+
+.resume-role-header {
+  grid-area: header;
+}
+
+.resume-role-body {
+  grid-area: body;
 }
 
 /* Extends .text-label — overrides only margin */
@@ -484,7 +503,7 @@ main {
   line-height: 1.7;
 }
 
-.resume-role-main h2.resume-role-title {
+.resume-role-header h2.resume-role-title {
   font-family: var(--font-headline);
   font-size: 1.7rem;
   font-weight: 400;
@@ -502,7 +521,7 @@ main {
   margin: 0 0 1.25rem;
 }
 
-.resume-role-main p {
+.resume-role-body p {
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 300;
@@ -543,7 +562,11 @@ main {
 @media (max-width: 768px) {
   .resume-role {
     grid-template-columns: 1fr;
-    gap: 1.25rem 0;
+    grid-template-areas:
+      "header"
+      "side"
+      "body";
+    row-gap: 1.25rem;
     padding-bottom: 4rem;
   }
 
@@ -556,7 +579,6 @@ main {
   }
 
   .resume-period,
-  .resume-company,
   .resume-location {
     margin-bottom: 0;
   }
